@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import { connectDB } from './config/connectDB.js';
 import cors from "cors";
 import path from "path";
+import { fileURLToPath } from 'url';
 
 import authRoutes from './routes/authRoutes.js';
 
@@ -11,7 +12,9 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const __dirname = path.resolve();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 app.use(cors({origin:"http://localhost:5173",credentials:true}));
 app.use(express.json());
@@ -19,11 +22,9 @@ app.use(cookieParser());
 
 app.use('/api/auth',authRoutes);
 
-
-
 if (process.env.NODE_ENV === "production") {
   // Serve frontend static files
-  app.use(express.static(path.join(__dirname, "Frontend/dist")));
+  app.use(express.static(path.join(__dirname, "../Frontend/dist")));
   
   // Serve index.html for all remaining routes (React router support)
   app.use((req, res) => {

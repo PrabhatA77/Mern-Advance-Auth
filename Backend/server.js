@@ -3,8 +3,8 @@ import dotenv from "dotenv";
 import cookieParser from 'cookie-parser';
 import { connectDB } from './config/connectDB.js';
 import cors from "cors";
-import path from "path";
-import { fileURLToPath } from 'url';
+// import path from "path";
+// import { fileURLToPath } from 'url';
 
 import authRoutes from './routes/authRoutes.js';
 
@@ -16,7 +16,10 @@ const PORT = process.env.PORT || 5000;
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
 
-app.use(cors({origin:"http://localhost:5173",credentials:true}));
+app.use(cors({
+    origin: ["http://localhost:5173", "YOUR_FRONTEND_VERCEL_URL"],
+    credentials: true
+}));
 app.use(express.json());
 app.use(cookieParser());
 

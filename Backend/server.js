@@ -17,7 +17,9 @@ const PORT = process.env.PORT || 5000;
 // const __dirname = path.dirname(__filename);
 
 app.use(cors({
-    origin: ["http://localhost:5173", "YOUR_FRONTEND_VERCEL_URL"],
+    origin: process.env.NODE_ENV === "production" 
+        ? ["https://auth-tutorial-q7ynof7eb-prabhat-singh-rathores-projects.vercel.app"]
+        : ["http://localhost:5173"],
     credentials: true
 }));
 app.use(express.json());

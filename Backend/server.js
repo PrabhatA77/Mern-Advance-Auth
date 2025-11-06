@@ -18,9 +18,10 @@ const PORT = process.env.PORT || 5000;
 
 app.use(cors({
     origin: process.env.NODE_ENV === "production" 
-        ? ["https://auth-tutorial-q7ynof7eb-prabhat-singh-rathores-projects.vercel.app"]
+        ? ["https://auth-tutorial-mfhbcpg1k-prabhat-singh-rathores-projects.vercel.app"]
         : ["http://localhost:5173"],
-    credentials: true
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
 }));
 app.use(express.json());
 app.use(cookieParser());

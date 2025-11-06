@@ -8,8 +8,15 @@
   ],
   "routes": [
     {
+      "src": "/api/(.*)",
+      "dest": "Backend/server.js"
+    },
+    {
       "src": "/(.*)",
       "dest": "Backend/server.js"
     }
-  ]
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
 }
